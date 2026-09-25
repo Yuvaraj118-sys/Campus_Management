@@ -1,40 +1,38 @@
 package com.campus.model;
 
-public class Student {
+import java.util.Arrays;
 
-    // Encapsulation - data hiding
+public abstract class Student {
+    // Encapsulation data hiding
+    // instance variables
     private int studentId;
     private String studentName;
     private int studentAge;
     private String department;
     private int[] marks;
 
-    // Static variable
+    // static variable
     static int studentCount = 0;
 
-    // Default constructor
+    // default constructor
     public Student() {
         studentCount++;
     }
 
-    // Parameterized constructor
-    public Student(
-            int studentId,
-            String studentName,
-            int studentAge,
-            String department,
-            int[] marks) {
-
+    // parameterized constructor
+    public Student(int studentId, String studentName, int studentAge, String department, int[] marks) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentAge = studentAge;
         this.department = department;
         this.marks = marks;
-
         studentCount++;
     }
 
-    // Getters
+    // Abstract method: Every subclass MUST define this
+    public abstract void studentType();
+
+    // getters
     public int getStudentId() {
         return studentId;
     }
@@ -55,7 +53,7 @@ public class Student {
         return marks;
     }
 
-    // Setters
+    // setters
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
@@ -76,7 +74,7 @@ public class Student {
         this.marks = marks;
     }
 
-    // Display student details
+    // instance methods
     public void displayStudentDetails() {
         System.out.println("Student ID: " + studentId);
         System.out.println("Student Name: " + studentName);
@@ -84,22 +82,17 @@ public class Student {
         System.out.println("Department: " + department);
     }
 
-    // Method overloading
     public void displayStudentInfo() {
         displayStudentDetails();
     }
 
     public void displayStudentInfo(boolean showMarks) {
         displayStudentDetails();
-
         if (showMarks) {
-            System.out.println(
-                    "Marks: " + java.util.Arrays.toString(marks)
-            );
+            System.out.println("Marks: " + Arrays.toString(marks));
         }
     }
 
-    // Static method
     public static void displayStudentCount() {
         System.out.println("Total Students: " + studentCount);
     }
